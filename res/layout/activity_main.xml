@@ -1,0 +1,60 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gameBoard="http://schemas.android.com/apk/res/com.example.stars"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <com.example.stars.GameBoard
+        android:id="@+id/gameBoard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        gameBoard:row="10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+	    
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="1"
+	        android:orientation="vertical" >
+	
+	        <TextView
+	            android:id="@+id/info"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textSize="20sp" />
+	
+	        <TextView
+	            android:id="@+id/score"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textSize="20sp" />
+	        
+	        <TextView
+	            android:id="@+id/target"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textSize="20sp" />
+   		 </LinearLayout>
+   		 
+   		 <TextView
+	            android:id="@+id/record"
+	            android:layout_gravity="bottom"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="重新开始" />
+
+</LinearLayout>
