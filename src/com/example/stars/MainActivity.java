@@ -38,8 +38,6 @@ public class MainActivity extends Activity {
 		restartBtn = (Button) findViewById(R.id.button);
 		setData();
 		
-		int screenWidth = ScreenHelper.getScreenWidth(this);
-		gameBoard.setLayoutParams(new LinearLayout.LayoutParams(screenWidth, screenWidth));
 		gameBoard.setInfoListener(new OnInfoListener() {
 			
 			@Override

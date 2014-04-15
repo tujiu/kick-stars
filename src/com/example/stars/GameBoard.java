@@ -150,6 +150,11 @@ public class GameBoard extends View {
 		});
 	}
 
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		setMeasuredDimension(resolveSize(screenWidth, widthMeasureSpec), resolveSize(screenWidth, heightMeasureSpec));
+	}
+	
 	private void initGameLogic() {
 		getGameStatus();
 		if (score == 0 || !getGameData()) {
@@ -300,6 +305,7 @@ public class GameBoard extends View {
 		target = Star.getTarget(turn);
 		targetListener.onTargetChanged(this, "第" + getTurn() + "关 目标分数:" + getTarget());
 		invalidate();
+		createAnimation();
 	}
 
 	private void kickStar(int touchedRow, int touchedColumn) {
