@@ -29,6 +29,10 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.AnticipateInterpolator;
+import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.CycleInterpolator;
 
 public class GameBoard extends View {
@@ -295,6 +299,7 @@ public class GameBoard extends View {
 		selectedStars = Star.createEmptyStars(row);
 		target = Star.getTarget(turn);
 		targetListener.onTargetChanged(this, "第" + getTurn() + "关 目标分数:" + getTarget());
+		createAnimation();
 	}
 	
 	public void restart() {
@@ -304,7 +309,6 @@ public class GameBoard extends View {
 		selectedStars = Star.createEmptyStars(row);
 		target = Star.getTarget(turn);
 		targetListener.onTargetChanged(this, "第" + getTurn() + "关 目标分数:" + getTarget());
-		invalidate();
 		createAnimation();
 	}
 
@@ -449,7 +453,7 @@ public class GameBoard extends View {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		drawBoard();
-		canvas.drawBitmap(bitmap, 0, 0, tempPaint);
+		canvas.drawBitmap(bitmap, myAlpha, myAlpha, tempPaint);
 		super.onDraw(canvas);
 	}
 
@@ -494,8 +498,9 @@ public class GameBoard extends View {
 	private void createAnimation() {
 		myAlpha = 0;
 		tempPaint = new Paint();
-		ObjectAnimator oa=ObjectAnimator.ofInt(this, "myAlpha", 0, 255);
+		ObjectAnimator oa=ObjectAnimator.ofInt(this, "myAlpha", 500, 0);
 		oa.setDuration(3000);
+		oa.setInterpolator(new BounceInterpolator());
 		oa.addUpdateListener(new AnimatorUpdateListener() {
 			
 			@Override
@@ -512,7 +517,7 @@ public class GameBoard extends View {
 
 	public void setMyAlpha(int myAlpha) {
 		this.myAlpha = myAlpha;
-		tempPaint.setAlpha(myAlpha);
+//		tempPaint.setAlpha(myAlpha);
 		Log.i("update", this.myAlpha + "");
 	}
 }
